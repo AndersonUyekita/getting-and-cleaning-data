@@ -1,0 +1,34 @@
+---
+title: 'Getting and Cleaning Data'
+subtitle: 'Quiz 3'
+author: "Anderson H. Uyekita"
+date: '2022-05-21'
+output:
+  github_document: default
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,cache=TRUE,message=FALSE,warning=FALSE)
+library(tidyverse)
+library(magrittr)
+library(xml2)
+library(data.table)
+library(httr)
+library(sqldf)
+```
+
+```{r creating_folder,cache=TRUE}
+# Checking if the subfolder already exists.
+if (!dir.exists("data")) {
+    
+    # Creating a subfolder to store the data.
+    dir.create(path = "./data")
+}
+```
