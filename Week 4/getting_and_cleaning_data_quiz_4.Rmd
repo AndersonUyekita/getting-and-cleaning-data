@@ -1,0 +1,237 @@
+---
+title: 'Getting and Cleaning Data'
+subtitle: 'Quiz 4'
+author: "Anderson H. Uyekita"
+date: '2022-05-23'
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+  github_document: default
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,cache=TRUE,message=FALSE,warning=FALSE)
+library(tidyverse)
+library(magrittr)
+library(xml2)
+library(data.table)
+library(httr)
+library(sqldf)
+library(DT)
+library(lubridate)
+```
+
+```{r creating_folder,cache=TRUE}
+# Checking if the subfolder already exists.
+if (!dir.exists("data")) {
+    
+    # Creating a subfolder to store the data.
+    dir.create(path = "./data")
+}
+```
+
+## Question 1
+
+```{r,cache=TRUE}
+# Downloading the file "The American Community Survey".
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv",
+                     destfile = "./data/acs.csv",
+                     mode = "wb")
+
+# Downloading the code book.
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf ",
+                     destfile = "./data/code_book.pdf",
+                     mode = "wb")
+```
+
+Importing the downloaded file into R Object.
+
+```{r,cache=TRUE}
+# Loading the ACS data.
+acs <- utils::read.csv(file = "./data/acs.csv")
+
+# Performing the given expression.
+strsplit(x = colnames(acs), "wgtp")[123]
+```
+
+## Question 2
+
+```{r,cache=TRUE}
+# Downloading the GDP data.
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv",
+                     destfile = "./data/gdp.csv")
+
+# Loading GDP data.
+df_gdp <- utils::read.csv(file = "./data/gdp.csv",
+                          skip = 3,                   # The first rows of this database is blank
+                          header = TRUE)              # Forcing the read.csv readh the first rows as header.
+
+# First rows of GDP data.
+DT::datatable(df_gdp)
+
+# Data Cleaning
+df_gdp_tidy <- df_gdp %>%
+    mutate(US.dollars. = sub(pattern = " ", replacement = "", x = US.dollars.)) %>%
+    mutate(US.dollars. = gsub(pattern = ",", replacement = "", x = US.dollars.)) %>%
+    mutate(gdp = as.numeric(US.dollars.)) %>%
+    mutate(ranking = as.numeric(Ranking)) %>%
+    select(-c(X.1, X.2, X.3, X.4, X.5, X.6)) %>%
+    na.omit() %>%
+    rename("CountryName" = Economy)
+```
+
+After the data manipulation, I have calculated the GDP average as follows:
+
+```{r}
+# Calculating the GDP Average
+mean(df_gdp_tidy$gdp, na.rm = TRUE)
+```
+
+## Question 3
+
+The pattern used to filter countries that start with "United" is: `^United`.
+
+```{r,cache=TRUE}
+# Readings: https://r4ds.had.co.nz/strings.html
+#    ^ to match the start of the string.
+#
+# Solution 1:
+grep(pattern = "^United", x = df_gdp_tidy$CountryName)
+
+# Solution 2:
+df_gdp_tidy %>% filter(grepl(pattern = "^United", x = CountryName))
+```
+
+Both solutions have the same 3 countries, which starts with the United.
+
+## Question 4
+
+```{r,cache=TRUE}
+# Downloading the GDP data.
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv",
+                     destfile = "./data/gdp.csv")
+
+# Downloading the Educational data.
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv",
+                     destfile = "./data/education.csv")
+
+# Loading Education data.
+df_education <- utils::read.csv(file = "./data/education.csv")
+
+# First rows os Education Data.
+DT::datatable(df_education)
+
+# Loading GDP data.
+df_gdp <- utils::read.csv(file = "./data/gdp.csv",
+                          skip = 3,                   # The first rows of this database is blank
+                          header = TRUE)              # Forcing the read.csv readh the first rows as header.
+
+# CLEANING
+df_gdp <- df_gdp %>%
+    mutate(US.dollars. = sub(pattern = " ", replacement = "", x = US.dollars.)) %>%
+    mutate(US.dollars. = gsub(pattern = ",", replacement = "", x = US.dollars.)) %>%
+    mutate(US.dollars. = as.numeric(US.dollars.)) %>%
+    mutate(Ranking = as.numeric(Ranking))
+
+# CLEANING
+df_gdp_tidy <- df_gdp %>%
+    select(-c(X.1, X.2, X.3, X.4, X.5, X.6)) %>%
+    rename(country_shortcode = X, ranking = Ranking, country = Economy, gdp = US.dollars.) %>%
+    mutate(gdp = as.numeric(gdp)) %>%
+    na.omit() %>%
+    filter(ranking %in% 1:190)
+
+# CLEANING
+df_education_tidy <- df_education %>%
+    rename(country_shortcode = CountryCode)
+
+# Merging
+df_gdp_edu <- merge(x = df_education_tidy, y = df_gdp_tidy) 
+```
+
+In the `Special.Notes` column, it is possible to track when the Fiscal Year ends. I have used the expression "June 30" to find all the countries with their fiscal year ending on this date.
+
+```{r}
+# Printing the countries with the fiscal year ending on 30 June (end of June).
+df_gdp_edu %>%
+    select(country, Special.Notes) %>%
+    filter(grepl(pattern = "June 30", x = Special.Notes)) %>%
+    kableExtra::kbl() %>% kableExtra::kable_styling()
+```
+
+Counting the number of countries.
+
+```{r}
+# Filtering and counting the countries with fiscal year ending on June.
+df_gdp_edu %>%
+    select(country, Special.Notes) %>%
+    filter(grepl(pattern = "June 30", x = Special.Notes)) %>%
+    nrow()
+```
+
+## Question 5
+
+Executing the given code:
+
+```{r,cache=TRUE,include=TRUE}
+# Loading the quantmod package
+library(quantmod)
+
+# Gathering data from Amazon.
+amzn = getSymbols("AMZN",auto.assign=FALSE)
+
+# Gathering the dates from each data.
+sampleTimes = index(amzn)
+```
+
+I have converted it into a tibble dataframe to be able to use the tidyverse package.
+
+```{r}
+# Converting the amzn object into Tibble.
+data_q5 <- as_tibble(amzn)
+
+# Adding the date column.
+data_q5['date'] <- sampleTimes
+
+# Filtering data only from 2012.
+data_q5_2012 <- data_q5 %>%
+    filter(date >= "2012-01-01" & date <= "2012-12-31")
+
+# Showing the data gathered.
+DT::datatable(data_q5_2012)
+```
+
+The number of observations in 2012:
+
+```{r}
+# How many values in 2012
+nrow(data_q5_2012)
+```
+
+I have used the Lubridate package to work with a date type. In addition, I have added a column to store the wee day.
+
+```{r}
+# Ensuring to show the Week days in English.s
+Sys.setlocale("LC_ALL","English")
+
+# Adding a new column to store the wee days.
+data_q5_2012_wdays <- data_q5_2012 %>%
+    mutate(wday = lubridate::wday(x = lubridate::ymd(date), label=TRUE))
+
+# Showing the data with the new column of week day.
+DT::datatable(data_q5_2012_wdays)
+```
+
+Finally, the number of Monday in 2012:
+
+```{r}
+# Number of observations in 2012 on Mondays.
+data_q5_2012_wdays%>%
+    filter(wday == "Mon") %>%
+    nrow()
+```

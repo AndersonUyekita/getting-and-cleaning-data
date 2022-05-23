@@ -2,15 +2,15 @@
 title: 'Getting and Cleaning Data'
 subtitle: 'Quiz 3'
 author: "Anderson H. Uyekita"
-date: '2022-05-21'
+date: '2022-05-23'
 output:
-  github_document: default
   html_document:
     toc: true
     toc_depth: 4
     toc_float:
       collapsed: false
       smooth_scroll: true
+  github_document: default
 always_allow_html: true
 ---
 
@@ -22,6 +22,7 @@ library(xml2)
 library(data.table)
 library(httr)
 library(sqldf)
+library(data.table)
 ```
 
 ```{r creating_folder,cache=TRUE}
@@ -31,4 +32,187 @@ if (!dir.exists("data")) {
     # Creating a subfolder to store the data.
     dir.create(path = "./data")
 }
+```
+
+## Question 1
+
+```{r,cache=TRUE}
+# Downloading the American Community Survey file.
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv",
+                     destfile = "./data/acs.csv")
+
+# Downloading the code book.
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf ",
+                     destfile = "./data/code_book.pdf",
+                     mode = "wb")
+
+# Loading CSV file into R object.
+acs <- utils::read.csv(file = "./data/acs.csv")
+```
+
+The American Community Survey Dataset.
+
+```{r,cache=TRUE}
+# First rows of ACS
+DT::datatable(acs)
+```
+
+Dimensions of ACS dataset:
+
+```{r}
+# Number of observations and Variables
+dim(acs)
+```
+
+Following the question instruction, I will only display the first 3 values.
+
+Based on the `code book` provided:
+
+* *households on greater than 10 acres*, means: ACR == 3
+* *sold more than $10,000 worth of agriculture products*, means: AGS == 6
+
+```{r}
+# According to the statement.
+agricultureLogical <- acs$ACR == 3 & acs$AGS == 6
+
+# Performing the given expression:
+head(which(agricultureLogical), 3)
+```
+
+## Question 2
+
+```{r,cache=TRUE}
+# Loading the JPEG package.
+library(jpeg)
+
+# Downloading the KPEG file.
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg",
+                     destfile = "./data/image_file.jpeg", mode = "wb")
+
+# Loading the JPEG file. Following the instruction to set NATIVE as TRUE.
+image <- jpeg::readJPEG(source = "./data/image_file.jpeg",
+                        native = TRUE)
+
+# Answering the quantiles 30% and 80%.
+c(quantile(x = image, 0.3), quantile(x = image, 0.8))
+```
+
+My answer is a bit different, as warned by the question instruction.
+
+## Question 3
+
+```{r}
+# Downloading the GDP data.
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv",
+                     destfile = "./data/gdp.csv")
+
+# Downloading the Educational data.
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv",
+                     destfile = "./data/education.csv")
+
+# Loading Education data.
+df_education <- utils::read.csv(file = "./data/education.csv")
+
+# First rows os Education Data.
+DT::datatable(df_education)
+
+# Loading GDP data.
+df_gdp <- utils::read.csv(file = "./data/gdp.csv",
+                          skip = 3,                   # The first rows of this database is blank
+                          header = TRUE)              # Forcing the read.csv readh the first rows as header.
+
+# First rows of GDP data.
+DT::datatable(df_gdp)
+```
+
+We need to match those databases on the `country shortcode`. For this reason, we need to be sure if this `country shortcode` is present in both datasets. The GDP database is not cleaned.
+
+As you can see, we do not have columns with identical names neither GDP columns with numeric.
+
+```{r}
+# DATA CLEANING: Fixing the GDP to be number and removing comas.
+df_gdp <- df_gdp %>%
+    mutate(US.dollars. = sub(pattern = " ", replacement = "", x = US.dollars.)) %>%
+    mutate(US.dollars. = gsub(pattern = ",", replacement = "", x = US.dollars.)) %>%
+    mutate(US.dollars. = as.numeric(US.dollars.)) %>%
+    mutate(Ranking = as.numeric(Ranking))
+
+# DATA CLEANING: Removing unecessary columns of GDP database.
+df_gdp_tidy <- df_gdp %>%
+    select(-c(X.1, X.2, X.3, X.4, X.5, X.6)) %>%
+    rename(country_shortcode = X, ranking = Ranking, country = Economy, gdp = US.dollars.) %>%
+    mutate(gdp = as.numeric(gdp)) %>%
+    na.omit() %>%
+    filter(ranking %in% 1:190)
+
+# DATA CLEANING: Using the same column name to Country.
+df_education_tidy <- df_education %>%
+    rename(country_shortcode = CountryCode)
+```
+
+After the cleaning process, I merged those datasets into one.
+
+The 13th country in the ordered dataset in a crescent way:
+
+```{r}
+# Merging Education and GDP databses.
+df_gdp_edu <- merge(x = df_education_tidy, y = df_gdp_tidy) 
+
+# Searching the 13th country in crescent order.
+df_gdp_edu%>%
+    select(country_shortcode, Long.Name, gdp) %>%
+    arrange(gdp) %>%
+    filter(order(gdp) == 13)
+```
+
+The number of countries with GDP and Education database match. 
+
+```{r}
+# Counting the number of countries with match.
+df_gdp_edu %>% nrow()
+```
+
+## Question 4
+
+Investigating the `Income.Group` variable. I just want to see what is the "levels".
+
+```{r}
+# Classes of Income Group
+unique(df_gdp_edu$Income.Group)
+```
+
+Now, I could calculate the average of each `Income.Group` level. The GDP average of `High income: OECD` and `High income: nonOECD` from `Income.Group` could be found below:
+
+```{r}
+# Calculating the average of each Income Group Level.
+df_gdp_edu %>% group_by(Income.Group) %>% 
+    summarise(AVG = mean(as.numeric(ranking)))
+```
+
+## Question 5
+
+Let's see the quantiles boundaries.
+
+```{r}
+# Creating the groups limits.
+quantile(x = as.numeric(df_gdp_edu$ranking), c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0))
+```
+
+Following the question instructions, I need to create a CUT. To do so, I will create a new variable, `ranking_group`, to store these grouping classifications.
+
+```{r}
+# Adding a new column to the merged dataframe.
+df_gdp_edu$ranking_group <- cut(x = df_gdp_edu$ranking, breaks = quantile(x = as.numeric(df_gdp_edu$ranking), c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0)))
+
+# Printing the results of this new column.
+df_gdp_edu %>% select(country_shortcode, Long.Name,gdp,ranking_group) %>% head()
+```
+
+I have already inserted this new variable to classify each country based on those quantiles. I need to count the number of countries in `Lower middle income` in `Income.Group`.
+
+```{r}
+df_gdp_edu %>%
+    group_by(ranking_group) %>%
+    filter(Income.Group == "Lower middle income") %>%
+    summarise(n = n())
 ```
