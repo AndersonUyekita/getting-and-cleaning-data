@@ -1,32 +1,14 @@
----
-title: 'Getting and Cleaning Data'
-subtitle: 'Quiz 1'
-author: "Anderson H. Uyekita"
-date: '2022-05-20'
-output:
-  github_document: default
-  html_document:
-    toc: true
-    toc_depth: 4
-    toc_float:
-      collapsed: false
-      smooth_scroll: true
-always_allow_html: true
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,cache=TRUE,message=FALSE,warning=FALSE)
-library(tidyverse)
-library(magrittr)
-library(xml2)
-library(data.table)
-```
+Getting and Cleaning Data
+================
+Anderson H. Uyekita
+2022-05-20
 
 This Quiz is part of the Getting and Cleaning Data Course.
 
-To turn the folder more structured, I will create a subfolder to host the dataset.
+To turn the folder more structured, I will create a subfolder to host
+the dataset.
 
-```{r creating_folder,cache=TRUE}
+``` r
 # Checking if the subfolder already exists.
 if (!dir.exists("data")) {
     
@@ -37,7 +19,7 @@ if (!dir.exists("data")) {
 
 Questions 1 and 2 will share the same dataset.
 
-```{r preparation_q1_q2}
+``` r
 # Downloading the data to Questions 1 and 2 of Quiz 1
 utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv",
                      destfile = "./data/survey_data_housing.csv",
@@ -51,7 +33,7 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 
 ## Question 1
 
-```{r q1}
+``` r
 # According to the code book the VAL columns is about the Property value
 #
 # Property value
@@ -90,9 +72,11 @@ data_1 <- utils::read.csv(file = "./data/survey_data_housing.csv")
 data_1 %>% dplyr::select(VAL) %>% filter(VAL == 24) %>% nrow()
 ```
 
+    ## [1] 53
+
 ## Question 2
 
-```{r q2}
+``` r
 # Family type and employment status
 #
 # b .N/A (GQ/vacant/not a family)
@@ -110,7 +94,7 @@ data_1 %>% dplyr::select(VAL) %>% filter(VAL == 24) %>% nrow()
 
 ## Question 3
 
-```{r q3}
+``` r
 # Downloading the data to question 3 of Quiz 1
 utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx",
                      destfile = "./data/natural_gas.xlsx",
@@ -128,16 +112,31 @@ dat <- xlsx::read.xlsx(file = "./data/natural_gas.xlsx",
 dat
 ```
 
+    ##     Zip CuCurrent PaCurrent PoCurrent      Contact Ext          Fax email
+    ## 1 74136         0         1         0 918-491-6998   0 918-491-6659    NA
+    ## 2 30329         1         0         0 404-321-5711  NA         <NA>    NA
+    ## 3 74136         1         0         0 918-523-2516   0 918-523-2522    NA
+    ## 4 80203         0         1         0 303-864-1919   0         <NA>    NA
+    ## 5 80120         1         0         0 345-098-8890 456         <NA>    NA
+    ##   Status
+    ## 1      1
+    ## 2      1
+    ## 3      1
+    ## 4      1
+    ## 5      1
+
 Calculating the expression: `sum(dat$Zip*dat$Ext,na.rm=T)`
 
-```{r}
+``` r
 # Printing the results.
 sum(dat$Zip*dat$Ext,na.rm=T)
 ```
 
+    ## [1] 36534720
+
 ## Question 4
 
-```{r q4}
+``` r
 # References
 # 
 # * https://urbandatapalette.com/post/2021-03-xml-dataframe-r/
@@ -160,21 +159,18 @@ df_baltimore_restaurant <- tibble::as_tibble(xml_baltimore_restaurant) %>%
     readr::type_convert()
 ```
 
-```{r,include=FALSE}
-# Printing the first rows.
-DT::datatable(df_baltimore_restaurant)
-```
-
 Answer:
 
-```{r}
+``` r
 # Counting number of restaurant with zipcode 21231
 df_baltimore_restaurant %>% filter(zipcode == 21231) %>% nrow()
 ```
 
+    ## [1] 127
+
 ## Question 5
 
-```{r q5,message=FALSE}
+``` r
 # Downloading the data to question 5 of Quiz 1
 utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv",
                      destfile = "./data/housing_idaho.csv",
@@ -203,5 +199,7 @@ b_4 <- Sys.time()
 
 
 print(c(b_1 - a_1, b_2 - a_2, b_3 - a_3, b_4 - a_4))
-
 ```
+
+    ## Time differences in secs
+    ## [1] 0.003113031 0.024966002 0.004997969 0.137542009

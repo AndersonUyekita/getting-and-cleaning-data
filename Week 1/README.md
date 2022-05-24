@@ -10,6 +10,12 @@
     * To: 20/05/2022
 
 ***
+#### Deliverables
+
+* :computer: Swirl
+* [:pencil: Quiz 1](./getting_and_cleaning_data_quiz_1.md)
+
+***
 
 This week the videos have covered:
 

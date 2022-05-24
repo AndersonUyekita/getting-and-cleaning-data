@@ -13,16 +13,16 @@
 
 #### Deliverables
 
--   Swirl: Dates and Times with Lubridate
--   [Quiz](./getting_and_cleaning_data_quiz_4.Rmd)
--   [Course Project](https://github.com/AndersonUyekita/getting_and_cleaning_data_course_project)
+-   :computer: Swirl: Dates and Times with Lubridate
+-   [:pencil: Quiz](./getting_and_cleaning_data_quiz_4.md)
+-   [:rocket: Course Project](https://github.com/AndersonUyekita/getting_and_cleaning_data_course_project)
 
 ------------------------------------------------------------------------
 
 ## Notations
 
 | Function                                                                     | Description                                                        |
-|:-----------------------------------------------------------------------------|:-------------------------------------------------------------------|
+|:-------------------------------------|:---------------------------------|
 | `base::tolower(x = "HELLO world")`                                           | Converts any capitalized string into minimized.                    |
 | `base::strsplit(x = "Hello.World", split = "\\.")`                           | Split a string based on a pattern.                                 |
 | `base::sub(x = "Hello-World", pattern = "-", replacement = " ")`             | Substitute a pattern by a replacement. It will only work one time. |
