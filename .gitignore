@@ -1,2 +1,15 @@
+# Find the files ignored:
+#
+# $git status --ignored
+
+# Removing all cache folder.
 Week ?/getting_and_cleaning_data_quiz_?_cache/**
+
+# Removing any html file.
 *.html
+
+
+
+# Readings
+#
+# * https://linuxize.com/post/gitignore-ignoring-files-in-git/

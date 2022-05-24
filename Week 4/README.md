@@ -15,7 +15,7 @@
 
 -   :computer: Swirl: Dates and Times with Lubridate
 -   [:pencil: Quiz](./getting_and_cleaning_data_quiz_4.md)
--   [:rocket: Course Project](https://github.com/AndersonUyekita/getting_and_cleaning_data_course_project)
+-   [:rocket: Course Project Repository](https://github.com/AndersonUyekita/getting_and_cleaning_data_course_project)
 
 ------------------------------------------------------------------------
 
