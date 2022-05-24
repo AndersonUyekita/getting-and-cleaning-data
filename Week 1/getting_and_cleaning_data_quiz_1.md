@@ -1,4 +1,4 @@
-Getting and Cleaning Data
+`Quiz 1` Getting and Cleaning Data
 ================
 Anderson H. Uyekita
 

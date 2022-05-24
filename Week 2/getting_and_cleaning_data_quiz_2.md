@@ -1,7 +1,17 @@
-Getting and Cleaning Data
+`Quiz 2` Getting and Cleaning Data
 ================
 Anderson H. Uyekita
-2022-05-21
+
+-   Specialization: [Data Science: Foundations using R
+    Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
+-   Course: [Getting and Cleaning
+    Data](https://www.coursera.org/learn/data-cleaning)
+    -   Instructor: Jeffrey Leek
+-   Week 2
+    -   Start: 2022/05/21
+    -   Finish: 2022/05/21
+
+------------------------------------------------------------------------
 
 This Quiz is part of the Getting and Cleaning Data Course.
 
