@@ -19,6 +19,15 @@
 
 ------------------------------------------------------------------------
 
+This week the videos have covered:
+
+* Editing Text Variables
+* Regular Expressions I
+* Regular Expressions II
+* Working with Dates
+* Data Resources
+
+
 ## Notations
 
 | Function                                                                     | Description                                                        |

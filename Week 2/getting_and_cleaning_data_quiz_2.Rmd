@@ -4,13 +4,13 @@ subtitle: 'Quiz 2'
 author: "Anderson H. Uyekita"
 date: '2022-05-21'
 output:
-  github_document: default
   html_document:
     toc: true
     toc_depth: 4
     toc_float:
       collapsed: false
       smooth_scroll: true
+  github_document: default
 always_allow_html: true
 ---
 

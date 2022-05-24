@@ -12,12 +12,12 @@
 ***
 #### Deliverables
 
-* :computer: Swirl
+* :computer: Swirl: There is no swirl assignment this week.
 * [:pencil: Quiz 1](./getting_and_cleaning_data_quiz_1.md)
 
 ***
 
-This week the videos have covered:
+Videos covered this week:
 
 * Raw and Processed Data
 * Components of Tidy Data
