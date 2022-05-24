@@ -3,6 +3,18 @@ Getting and Cleaning Data
 Anderson H. Uyekita
 2022-05-20
 
+-   Specialization:
+    <a href="https://www.coursera.org/specializations/data-science-foundations-r" target="_blank" rel="noopener">Data
+    Science: Foundations using R Specialization</a>
+-   Course: [Getting and Cleaning
+    Data](https://www.coursera.org/learn/data-cleaning){:target=“\_blank”
+    rel=“noopener”}
+    -   Instructor: Jeffrey Leek
+    -   From: 20/05/2022
+    -   To: 20/05/2022
+
+------------------------------------------------------------------------
+
 This Quiz is part of the Getting and Cleaning Data Course.
 
 To turn the folder more structured, I will create a subfolder to host
@@ -202,4 +214,4 @@ print(c(b_1 - a_1, b_2 - a_2, b_3 - a_3, b_4 - a_4))
 ```
 
     ## Time differences in secs
-    ## [1] 0.003998995 0.019989014 0.005016088 0.041929960
+    ## [1] 0.003999949 0.011569023 0.002912998 0.058490992
