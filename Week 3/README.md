@@ -1,17 +1,16 @@
 # `Week 3` [Getting and Cleaning Data]
 
-#### Tags
-
-* Specialization: Data Science: Foundations using R Specialization
-* Course: Getting and Cleaning Data
+* Author: Anderson H Uyekita
+* Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
+* Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
     * Instructor: Jeffrey Leek
-    * URL: https://www.coursera.org/learn/data-cleaning
-    * From: 23/05/2022
-    * To: 23/05/2022
+* Week 3
+    * Start: 2022/05/23
+    * Finish: 2022/05/23
 
 ***
 
-#### Deliverables
+#### Assignments & Deliverables
     
 * :computer: Swirl:
     * Manipulating Data with dplyr

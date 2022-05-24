@@ -1,17 +1,16 @@
 # `Week 4` [Getting and Cleaning Data]
 
-#### Tags
-
--   Specialization: Data Science: Foundations using R Specialization
--   Course: Getting and Cleaning Data
-    -   Instructor: Jeff Leek
-    -   URL: <https://www.coursera.org/learn/data-cleaning>
-    -   From: 23/05/2022
-    -   To: 24/05/2022
+* Author: Anderson H Uyekita
+* Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
+* Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
+    * Instructor: Jeffrey Leek
+* Week 4
+    * Start: 2022/05/23
+    * Finish: 2022/05/24
 
 ------------------------------------------------------------------------
 
-#### Deliverables
+#### Assignments & Deliverables
 
 -   :computer: Swirl: Dates and Times with Lubridate
 -   [:pencil: Quiz](./getting_and_cleaning_data_quiz_4.md)

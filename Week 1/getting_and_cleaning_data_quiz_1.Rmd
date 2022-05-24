@@ -2,23 +2,23 @@
 title: 'Getting and Cleaning Data'
 subtitle: 'Quiz 1'
 author: "Anderson H. Uyekita"
-date: '2022-05-20'
 output:
-  github_document: default
   html_document:
     toc: true
     toc_depth: 4
     toc_float:
       collapsed: false
       smooth_scroll: true
+  github_document: default
 always_allow_html: true
 ---
 
-* Specialization: <a href="https://www.coursera.org/specializations/data-science-foundations-r" target="_blank" rel="noopener">Data Science: Foundations using R Specialization</a>
-* Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning){:target="_blank" rel="noopener"}
+* Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
+* Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
     * Instructor: Jeffrey Leek
-    * From: 20/05/2022
-    * To: 20/05/2022
+* Week 1: 
+    * Start: 2022/05/20
+    * Finish: 2022/05/20
 
 ***
 

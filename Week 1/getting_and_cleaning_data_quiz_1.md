@@ -1,17 +1,15 @@
 Getting and Cleaning Data
 ================
 Anderson H. Uyekita
-2022-05-20
 
--   Specialization:
-    <a href="https://www.coursera.org/specializations/data-science-foundations-r" target="_blank" rel="noopener">Data
-    Science: Foundations using R Specialization</a>
+-   Specialization: [Data Science: Foundations using R
+    Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
 -   Course: [Getting and Cleaning
-    Data](https://www.coursera.org/learn/data-cleaning){:target=“\_blank”
-    rel=“noopener”}
+    Data](https://www.coursera.org/learn/data-cleaning)
     -   Instructor: Jeffrey Leek
-    -   From: 20/05/2022
-    -   To: 20/05/2022
+-   Week 1:
+    -   Start: 2022/05/20
+    -   Finish: 2022/05/20
 
 ------------------------------------------------------------------------
 

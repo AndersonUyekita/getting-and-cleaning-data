@@ -2,7 +2,6 @@
 title: 'Getting and Cleaning Data'
 subtitle: 'Quiz 2'
 author: "Anderson H. Uyekita"
-date: '2022-05-21'
 output:
   html_document:
     toc: true
@@ -13,6 +12,15 @@ output:
   github_document: default
 always_allow_html: true
 ---
+
+* Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
+* Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
+    * Instructor: Jeffrey Leek
+* Week 2
+    * Start: 2022/05/21
+    * Finish: 2022/05/21
+
+***
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,cache=TRUE,message=FALSE,warning=FALSE)
