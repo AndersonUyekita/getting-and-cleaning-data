@@ -4,7 +4,6 @@ subtitle: 'Quiz 1'
 author: "Anderson H. Uyekita"
 date: '2022-05-20'
 output:
-  github_document: default
   html_document:
     toc: true
     toc_depth: 4
@@ -45,7 +44,7 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 
 # Downloading the code book Questions 1 and 2 of Quiz 1
 utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf",
-                     destfile = "./code_book.pdf",
+                     destfile = "./data/code_book.pdf",
                      quiet = TRUE, mode = "wb")
 ```
 
