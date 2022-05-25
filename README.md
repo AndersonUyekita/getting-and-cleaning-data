@@ -6,7 +6,7 @@
     * Instructor: Jeffrey Leek
     * Start: 2022/05/20
     * Finish: 2022/05/24
-* :trophy: Certificate [Soon]
+* [:trophy: Certificate](https://www.coursera.org/account/accomplishments/verify/TE98YVYE35CV)
 
 ***
 
