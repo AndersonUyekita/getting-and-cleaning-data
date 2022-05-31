@@ -30,6 +30,7 @@ library(data.table)
 library(httr)
 library(sqldf)
 library(data.table)
+library(kableExtra)
 ```
 
 ```{r creating_folder,cache=TRUE}
@@ -49,7 +50,7 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
                      destfile = "./data/acs.csv")
 
 # Downloading the code book.
-utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf ",
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf",
                      destfile = "./data/code_book.pdf",
                      mode = "wb")
 
@@ -60,8 +61,11 @@ acs <- utils::read.csv(file = "./data/acs.csv")
 The American Community Survey Dataset.
 
 ```{r,cache=TRUE}
-# First rows of ACS
-DT::datatable(acs)
+# First rows of ACS and first columns.
+acs %>% select(c(1:5)) %>%
+    head(5) %>%
+    kableExtra::kbl() %>%
+    kableExtra::kable_styling()
 ```
 
 Dimensions of ACS dataset:
@@ -121,7 +125,11 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 df_education <- utils::read.csv(file = "./data/education.csv")
 
 # First rows os Education Data.
-DT::datatable(df_education)
+df_education %>%
+    select(c(1:6)) %>%
+    head() %>%
+    kableExtra::kbl() %>%
+    kableExtra::kable_styling()
 
 # Loading GDP data.
 df_gdp <- utils::read.csv(file = "./data/gdp.csv",
@@ -129,7 +137,10 @@ df_gdp <- utils::read.csv(file = "./data/gdp.csv",
                           header = TRUE)              # Forcing the read.csv readh the first rows as header.
 
 # First rows of GDP data.
-DT::datatable(df_gdp)
+df_gdp %>%
+    head() %>%
+    kableExtra::kbl() %>%
+    kableExtra::kable_styling()
 ```
 
 We need to match those databases on the `country shortcode`. For this reason, we need to be sure if this `country shortcode` is present in both datasets. The GDP database is not cleaned.
