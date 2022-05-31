@@ -1,6 +1,6 @@
 # [Getting and Cleaning Data]
 
-* Author: Anderson H Uyekita
+* :man_technologist: Author: Anderson H Uyekita
 * :books: Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
 * :open_book: Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
     * :teacher: Instructor: Jeffrey Leek
@@ -23,7 +23,7 @@
 
 #### Class Notes
 
-* :one: Week 1
-* :two: Week 2 
-* :three: Week 3
-* :four: Week 4
+* :calendar::one: Week 1
+* :calendar::two: Week 2 
+* :calendar::three: Week 3
+* :calendar::four: Week 4
