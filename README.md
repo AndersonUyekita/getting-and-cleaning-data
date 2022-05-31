@@ -26,3 +26,19 @@
 * [:calendar: Week 2](./Week%202/README.md)
 * [:calendar: Week 3](./Week%203/README.md)
 * [:calendar: Week 4](./Week%204/README.md)
+
+***
+
+#### Course Syllabus
+
+* Data collection
+  * Raw files (.csv,.xlsx)
+  * Databases (mySQL,MongoDB)
+  * APIs
+* Data formats
+  * Flat files (.csv,.txt)
+  * XML
+  * JSON
+* Making data tidy
+* Distributing data
+* Scripting for data cleaning
