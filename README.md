@@ -20,10 +20,11 @@
 
 ***
 
-
 #### Class Notes
 
 * :calendar::one: Week 1
 * :calendar::two: Week 2 
 * :calendar::three: Week 3
 * :calendar::four: Week 4
+
+👍🏻
