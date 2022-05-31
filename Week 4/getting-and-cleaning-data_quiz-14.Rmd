@@ -2,13 +2,13 @@
 title: '`Quiz 4` Getting and Cleaning Data'
 author: "Anderson H. Uyekita"
 output:
-  github_document: default
   html_document:
     toc: true
     toc_depth: 4
     toc_float:
       collapsed: false
       smooth_scroll: true
+  github_document: default
 always_allow_html: true
 ---
 
@@ -51,7 +51,7 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
                      mode = "wb")
 
 # Downloading the code book.
-utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf ",
+utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FPUMSDataDict06.pdf",
                      destfile = "./data/code_book.pdf",
                      mode = "wb")
 ```
@@ -79,7 +79,10 @@ df_gdp <- utils::read.csv(file = "./data/gdp.csv",
                           header = TRUE)              # Forcing the read.csv readh the first rows as header.
 
 # First rows of GDP data.
-DT::datatable(df_gdp)
+df_gdp %>%
+    head() %>%
+    kableExtra::kbl() %>%
+    kableExtra::kable_styling()
 
 # Data Cleaning
 df_gdp_tidy <- df_gdp %>%
@@ -131,7 +134,10 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 df_education <- utils::read.csv(file = "./data/education.csv")
 
 # First rows os Education Data.
-DT::datatable(df_education)
+df_education %>%
+    head() %>%
+    kableExtra::kbl() %>%
+    kableExtra::kable_styling()
 
 # Loading GDP data.
 df_gdp <- utils::read.csv(file = "./data/gdp.csv",
@@ -210,7 +216,10 @@ data_q5_2012 <- data_q5 %>%
     filter(date >= "2012-01-01" & date <= "2012-12-31")
 
 # Showing the data gathered.
-DT::datatable(data_q5_2012)
+data_q5_2012 %>%
+    head() %>%
+    kableExtra::kbl() %>%
+    kableExtra::kable_styling()
 ```
 
 The number of observations in 2012:
@@ -231,7 +240,10 @@ data_q5_2012_wdays <- data_q5_2012 %>%
     mutate(wday = lubridate::wday(x = lubridate::ymd(date), label=TRUE))
 
 # Showing the data with the new column of week day.
-DT::datatable(data_q5_2012_wdays)
+data_q5_2012_wdays %>%
+    head() %>%
+    kableExtra::kbl() %>%
+    kableExtra::kable_styling()
 ```
 
 Finally, the number of Monday in 2012:
