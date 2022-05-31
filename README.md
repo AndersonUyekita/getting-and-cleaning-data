@@ -27,7 +27,11 @@
 * :calendar::three: Week 3
 * :calendar::four: Week 4
 
-:man_technologist:🏻
 
-👩‍💻
-👨🏻‍💻
+or
+
+
+* :calendar: Week :one:
+* :calendar: Week :two: 
+* :calendar: Week :three:
+* :calendar: Week :four:
