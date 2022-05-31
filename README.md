@@ -12,8 +12,8 @@
 
 #### Assignments & Deliverables
 
-* [:rocket: Course Project Repository](https://github.com/AndersonUyekita/GettingAndCleaningData_CourseProject)
-* [:pencil: Quiz :one:](https://github.com/AndersonUyekita/GettingAndCleaningData/blob/main/Week%201/getting_and_cleaning_data_quiz_1.md)
-* [:pencil: Quiz :two:](https://github.com/AndersonUyekita/GettingAndCleaningData/blob/main/Week%202/getting_and_cleaning_data_quiz_2.md)
-* [:pencil: Quiz :three:](https://github.com/AndersonUyekita/GettingAndCleaningData/blob/main/Week%203/getting_and_cleaning_data_quiz_3.md)
-* [:pencil: Quiz :four:](https://github.com/AndersonUyekita/GettingAndCleaningData/blob/main/Week%204/getting_and_cleaning_data_quiz_4.md)
+* [:rocket: Course Project Repository](https://github.com/AndersonUyekita/getting-and-cleaning-data_course-project)
+* [:pencil: Quiz :one:](./getting-and-cleaning-data/blob/main/Week%201/getting-and-cleaning-data_quiz-1.md)
+* [:pencil: Quiz :two:](./getting-and-cleaning-data/blob/main/Week%202/getting-and-cleaning-data_quiz-2.md)
+* [:pencil: Quiz :three:](https://github.com/AndersonUyekita/getting-and-cleaning-data/blob/main/Week%203/getting-and-cleaning-data_quiz-3.md)
+* [:pencil: Quiz :four:](https://github.com/AndersonUyekita/getting-and-cleaning-data/blob/main/Week%204/getting-and-cleaning-data_quiz-4.md)
