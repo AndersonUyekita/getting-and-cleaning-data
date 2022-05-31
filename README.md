@@ -22,16 +22,7 @@
 
 #### Class Notes
 
-* :calendar::one: Week 1
-* :calendar::two: Week 2 
-* :calendar::three: Week 3
-* :calendar::four: Week 4
-
-
-or
-
-
-* :calendar: Week :one:
-* :calendar: Week :two: 
-* :calendar: Week :three:
-* :calendar: Week :four:
+* [:calendar: Week 1](./Week%201/README.md)
+* [:calendar: Week 2](./Week%202/README.md)
+* [:calendar: Week 3](./Week%203/README.md)
+* [:calendar: Week 4](./Week%204/README.md)
