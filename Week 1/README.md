@@ -13,7 +13,7 @@
 #### Assignments & Deliverables
 
 * :computer: Swirl: There is no swirl assignment this week.
-* [:pencil: Quiz 1](./Week%201/getting_and_cleaning_data_quiz_1.md)
+* [:pencil: Quiz 1](./getting-and-cleaning-data_quiz_1.md)
 
 ***
 
