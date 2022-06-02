@@ -13,7 +13,7 @@
 #### Assignments & Deliverables
 
 -   :computer: Swirl: Dates and Times with Lubridate
--   [:pencil: Quiz](./Week%204/getting_and_cleaning_data_quiz_4.md)
+-   [:pencil: Quiz](./getting-and-cleaning-data_quiz-4.md)
 -   [:rocket: Course Project Repository](https://github.com/AndersonUyekita/getting-and-cleaning-data_course-project)
 
 ------------------------------------------------------------------------
