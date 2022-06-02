@@ -13,7 +13,7 @@
 #### Assignments & Deliverables
     
 * :computer: Swirl: There is no swirl homework.
-* [:pencil: Quiz 2](./getting_and_cleaning_data_quiz_2.md)
+* [:pencil: Quiz 2](./Week%202/getting_and_cleaning_data_quiz_2.md)
 
 ***
 

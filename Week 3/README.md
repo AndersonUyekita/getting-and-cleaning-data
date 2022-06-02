@@ -16,7 +16,7 @@
     * Manipulating Data with dplyr
     * Grouping and Chaining with dplyr
     * Tidying Data with tidyr
-* [:pencil: Quiz 3](./getting_and_cleaning_data_quiz_3.md)
+* [:pencil: Quiz 3](./Week%203/getting_and_cleaning_data_quiz_3.md)
 
 ***
 
