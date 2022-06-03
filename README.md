@@ -57,4 +57,16 @@ My Emojis:
 &#x1F4DD; = :memo:
 &#x1F4C6; = :calendar:
 
+Skin Tones (FROM w3schools)
+&#127999; 🏿
+&#127998; 🏾
+&#127997; 🏽
+&#127996; 🏼
+&#127995; 🏻
+
+References:
+
+* https://unicode.org/emoji/charts/full-emoji-list.html
+* https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md
+* https://www.w3schools.com/charsets/ref_emoji_skin_tones.asp
 -->
