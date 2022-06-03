@@ -1,15 +1,20 @@
 `Quiz 3` Getting and Cleaning Data
 ================
-Anderson H. Uyekita
 
--   Specialization: [Data Science: Foundations using R
-    Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
--   Course: [Getting and Cleaning
-    Data](https://www.coursera.org/learn/data-cleaning)
-    -   Instructor: Jeffrey Leek
--   Week 3
-    -   Start: 2022/05/23
-    -   Finish: 2022/05/23
+-   👨🏻‍💻 Author: Anderson H Uyekita
+-   📚 Specialization: <a
+    href="https://www.coursera.org/specializations/data-science-foundations-r"
+    target="_blank" rel="noopener">Data Science: Foundations using R
+    Specialization</a>
+-   📖 Course:
+    <a href="https://www.coursera.org/learn/data-cleaning" target="_blank"
+    rel="noopener">Getting and Cleaning Data</a>
+    -   🧑‍🏫 Instructor: Jeffrey Leek
+-   📆 Week 3
+    -   🚦 Start: 2022/05/23
+    -   🏁 Finish: 2022/05/23
+-   🌎 Rpubs: [Interactive
+    Document](https://rpubs.com/AndersonUyekita/quiz-3_getting-and-cleaning-data)
 
 ------------------------------------------------------------------------
 
@@ -42,10 +47,23 @@ The American Community Survey Dataset.
 
 ``` r
 # First rows of ACS and first columns.
-acs %>% select(c(1:5)) %>%
-    head(5) %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+
+# Let's see how it is
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        acs %>% select(c(1:5)) %>%
+            head(5) %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(acs)
+    }
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -223,11 +241,22 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 df_education <- utils::read.csv(file = "./data/education.csv")
 
 # First rows os Education Data.
-df_education %>%
-    select(c(1:6)) %>%
-    head() %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        df_education %>%
+            select(c(1:6)) %>%
+            head() %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(df_education)
+    }
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -376,10 +405,22 @@ df_gdp <- utils::read.csv(file = "./data/gdp.csv",
                           header = TRUE)              # Forcing the read.csv readh the first rows as header.
 
 # First rows of GDP data.
-df_gdp %>%
-    head() %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        df_gdp %>%
+            head() %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(df_gdp)
+    }
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">

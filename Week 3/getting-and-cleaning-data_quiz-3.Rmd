@@ -1,6 +1,6 @@
 ---
 title: '`Quiz 3` Getting and Cleaning Data'
-author: "Anderson H. Uyekita"
+author: '`r if(knitr::is_html_output()) {"&#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Anderson H Uyekita"} else {NULL}`'
 output:
   github_document: default
   html_document:
@@ -12,15 +12,6 @@ output:
 always_allow_html: true
 ---
 
-* Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
-* Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
-    * Instructor: Jeffrey Leek
-* Week 3
-    * Start: 2022/05/23
-    * Finish: 2022/05/23
-    
-***
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,cache=TRUE,message=FALSE,warning=FALSE)
 library(tidyverse)
@@ -31,7 +22,19 @@ library(httr)
 library(sqldf)
 library(data.table)
 library(kableExtra)
+library(rmarkdown)
 ```
+
+`r if(!knitr::is_html_output()) {"* &#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Author: Anderson H Uyekita"}`
+* &#x1f4da; Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r){target='_blank' rel='noopener'}
+* &#x1f4d6; Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning){target='_blank' rel='noopener'}
+    * &#x1F9D1;&#x200d;&#x1F3EB; Instructor: Jeffrey Leek
+* &#x1F4C6; Week 3
+    * &#x1F6A6; Start: 2022/05/23
+    * &#x1F3C1; Finish: 2022/05/23
+* `r if(!knitr::is_html_output()) {"&#x1F30E; Rpubs: [Interactive Document](https://rpubs.com/AndersonUyekita/quiz-3_getting-and-cleaning-data)"}else{"&#x1F4E6; Github Repository: [Static Document](https://github.com/AndersonUyekita/getting-and-cleaning-data/blob/main/Week%203/getting-and-cleaning-data_quiz-3.md){target='_blank' rel='noopener'}"}`
+
+***
 
 ```{r creating_folder,cache=TRUE}
 # Checking if the subfolder already exists.
@@ -62,10 +65,23 @@ The American Community Survey Dataset.
 
 ```{r,cache=TRUE}
 # First rows of ACS and first columns.
-acs %>% select(c(1:5)) %>%
-    head(5) %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+
+# Let's see how it is
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        acs %>% select(c(1:5)) %>%
+            head(5) %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(acs)
+    }
 ```
 
 Dimensions of ACS dataset:
@@ -125,11 +141,22 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 df_education <- utils::read.csv(file = "./data/education.csv")
 
 # First rows os Education Data.
-df_education %>%
-    select(c(1:6)) %>%
-    head() %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        df_education %>%
+            select(c(1:6)) %>%
+            head() %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(df_education)
+    }
 
 # Loading GDP data.
 df_gdp <- utils::read.csv(file = "./data/gdp.csv",
@@ -137,10 +164,23 @@ df_gdp <- utils::read.csv(file = "./data/gdp.csv",
                           header = TRUE)              # Forcing the read.csv readh the first rows as header.
 
 # First rows of GDP data.
-df_gdp %>%
-    head() %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        df_gdp %>%
+            head() %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(df_gdp)
+    }
+
 ```
 
 We need to match those databases on the `country shortcode`. For this reason, we need to be sure if this `country shortcode` is present in both datasets. The GDP database is not cleaned.

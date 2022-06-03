@@ -1,15 +1,20 @@
 `Quiz 2` Getting and Cleaning Data
 ================
-Anderson H. Uyekita
 
--   Specialization: [Data Science: Foundations using R
-    Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
--   Course: [Getting and Cleaning
-    Data](https://www.coursera.org/learn/data-cleaning)
-    -   Instructor: Jeffrey Leek
--   Week 2
-    -   Start: 2022/05/21
-    -   Finish: 2022/05/21
+-   👨🏻‍💻 Author: Anderson H Uyekita
+-   📚 Specialization: <a
+    href="https://www.coursera.org/specializations/data-science-foundations-r"
+    target="_blank" rel="noopener">Data Science: Foundations using R
+    Specialization</a>
+-   📖 Course:
+    <a href="https://www.coursera.org/learn/data-cleaning" target="_blank"
+    rel="noopener">Getting and Cleaning Data</a>
+    -   🧑‍🏫 Instructor: Jeffrey Leek
+-   📆 Week 2
+    -   🚦 Start: 2022/05/21
+    -   🏁 Finish: 2022/05/21
+-   🌎 Rpubs: [Interactive
+    Document](https://rpubs.com/AndersonUyekita/quiz-2_getting-and-cleaning-data)
 
 ------------------------------------------------------------------------
 
@@ -48,11 +53,12 @@ myapp <- oauth_app("github",
                    secret = "e3903d74395b7762d0e3d8201354a2b6021a21ba")
 
 # 3. Get OAuth credentials
-github_token <- oauth2.0_token(endpoint = oauth_endpoints("github"), app = myapp)
+github_token <- oauth2.0_token(endpoint = httr::oauth_endpoints("github"),
+                               app = myapp)
 
 # 4. Requesting the Github API to gather info from Jeff repositories.
-request <- GET(url = "https://api.github.com/users/jtleek/repos",
-           config = config(token = github_token))
+request <- httr::GET(url = "https://api.github.com/users/jtleek/repos",
+                     config = httr::config(token = github_token))
 
 # Checking the GET. If status == 200 means success!
 request$status_code

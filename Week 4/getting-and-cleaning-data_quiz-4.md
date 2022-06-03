@@ -1,15 +1,20 @@
 `Quiz 4` Getting and Cleaning Data
 ================
-Anderson H. Uyekita
 
--   Specialization: [Data Science: Foundations using R
-    Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
--   Course: [Getting and Cleaning
-    Data](https://www.coursera.org/learn/data-cleaning)
-    -   Instructor: Jeffrey Leek
--   Week 4
+-   👨🏻‍💻 Author: Anderson H Uyekita
+-   📚 Specialization: <a
+    href="https://www.coursera.org/specializations/data-science-foundations-r"
+    target="_blank" rel="noopener">Data Science: Foundations using R
+    Specialization</a>
+-   📖 Course:
+    <a href="https://www.coursera.org/learn/data-cleaning" target="_blank"
+    rel="noopener">Getting and Cleaning Data</a>
+    -   🧑‍🏫 Instructor: Jeffrey Leek
+-   📆 Week 4
     -   Start: 2022/05/23
     -   Finish: 2022/05/24
+-   🌎 Rpubs: [Interactive
+    Document](https://rpubs.com/AndersonUyekita/quiz-4_getting-and-cleaning-data)
 
 ------------------------------------------------------------------------
 
@@ -62,10 +67,21 @@ df_gdp <- utils::read.csv(file = "./data/gdp.csv",
                           header = TRUE)              # Forcing the read.csv readh the first rows as header.
 
 # First rows of GDP data.
-df_gdp %>%
-    head() %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        df_gdp %>%
+            head() %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(df_gdp)
+    }
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -353,10 +369,21 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 df_education <- utils::read.csv(file = "./data/education.csv")
 
 # First rows os Education Data.
-df_education %>%
-    head() %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        df_education %>%
+            head() %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(df_education)
+    }
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1020,10 +1047,24 @@ countries with their fiscal year ending on this date.
 
 ``` r
 # Printing the countries with the fiscal year ending on 30 June (end of June).
-df_gdp_edu %>%
-    select(country, Special.Notes) %>%
-    filter(grepl(pattern = "June 30", x = Special.Notes)) %>%
-    kableExtra::kbl() %>% kableExtra::kable_styling()
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        df_gdp_edu %>%
+            select(country, Special.Notes) %>%
+            filter(grepl(pattern = "June 30", x = Special.Notes)) %>%
+            kableExtra::kbl() %>% kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        df_gdp_edu %>%
+            select(country, Special.Notes) %>%
+            filter(grepl(pattern = "June 30", x = Special.Notes)) %>%
+            DT::datatable()
+    }
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1200,10 +1241,21 @@ data_q5_2012 <- data_q5 %>%
     filter(date >= "2012-01-01" & date <= "2012-12-31")
 
 # Showing the data gathered.
-data_q5_2012 %>%
-    head() %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        data_q5_2012 %>%
+            head() %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(data_q5_2012)
+    }
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -1399,10 +1451,21 @@ data_q5_2012_wdays <- data_q5_2012 %>%
     mutate(wday = lubridate::wday(x = lubridate::ymd(date), label=TRUE))
 
 # Showing the data with the new column of week day.
-data_q5_2012_wdays %>%
-    head() %>%
-    kableExtra::kbl() %>%
-    kableExtra::kable_styling()
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        data_q5_2012_wdays %>%
+            head() %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(data_q5_2012_wdays)
+    }
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">

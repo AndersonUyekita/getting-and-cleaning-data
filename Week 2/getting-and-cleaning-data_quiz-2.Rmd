@@ -1,6 +1,6 @@
 ---
 title: '`Quiz 2` Getting and Cleaning Data'
-author: "Anderson H. Uyekita"
+author: '`r if(knitr::is_html_output()) {"&#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Anderson H Uyekita"} else {NULL}`'
 output:
   github_document: default
   html_document:
@@ -12,15 +12,6 @@ output:
 always_allow_html: true
 ---
 
-* Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
-* Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
-    * Instructor: Jeffrey Leek
-* Week 2
-    * Start: 2022/05/21
-    * Finish: 2022/05/21
-
-***
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,cache=TRUE,message=FALSE,warning=FALSE)
 library(tidyverse)
@@ -29,7 +20,19 @@ library(xml2)
 library(data.table)
 library(httr)
 library(sqldf)
+library(rmarkdown)
 ```
+
+`r if(!knitr::is_html_output()) {"* &#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Author: Anderson H Uyekita"}`
+* &#x1f4da; Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r){target='_blank' rel='noopener'}
+* &#x1f4d6; Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning){target='_blank' rel='noopener'}
+    * &#x1F9D1;&#x200d;&#x1F3EB; Instructor: Jeffrey Leek
+* &#x1F4C6; Week 2
+    * &#x1F6A6; Start: 2022/05/21
+    * &#x1F3C1; Finish: 2022/05/21
+* `r if(!knitr::is_html_output()) {"&#x1F30E; Rpubs: [Interactive Document](https://rpubs.com/AndersonUyekita/quiz-2_getting-and-cleaning-data)"}else{"&#x1F4E6; Github Repository: [Static Document](https://github.com/AndersonUyekita/getting-and-cleaning-data/blob/main/Week%202/getting-and-cleaning-data_quiz-2.md){target='_blank' rel='noopener'}"}`
+
+***
 
 This Quiz is part of the Getting and Cleaning Data Course.
 
@@ -59,11 +62,12 @@ myapp <- oauth_app("github",
                    secret = "e3903d74395b7762d0e3d8201354a2b6021a21ba")
 
 # 3. Get OAuth credentials
-github_token <- oauth2.0_token(endpoint = oauth_endpoints("github"), app = myapp)
+github_token <- oauth2.0_token(endpoint = httr::oauth_endpoints("github"),
+                               app = myapp)
 
 # 4. Requesting the Github API to gather info from Jeff repositories.
-request <- GET(url = "https://api.github.com/users/jtleek/repos",
-           config = config(token = github_token))
+request <- httr::GET(url = "https://api.github.com/users/jtleek/repos",
+                     config = httr::config(token = github_token))
 
 # Checking the GET. If status == 200 means success!
 request$status_code
