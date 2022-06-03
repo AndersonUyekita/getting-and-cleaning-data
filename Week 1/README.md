@@ -17,13 +17,14 @@
 
 ***
 
-Videos covered this week:
+Content covered this week:
 
+* [Obtaining Data Motivation](./slides/01_01_obtainingDataMotivation.pdf)
 * [Raw and Processed Data](./slides/01_02_rawAndProcessedData.pdf)
-* Components of Tidy Data
-* Downloading Files
-* Reading Local Files
-* Reading Excel Files
-* Reading XML
-* Reading JSON
-* The data.table
+* [Components of Tidy Data](./slides/01_03_componentsOfTidyData.pdf)
+* [Downloading Files](./slides/01_04_downLoadingFiles.pdf)
+* [Reading Local Files](./slides/01_05_readingLocalFiles.pdf)
+* [Reading Excel Files](./slides/01_06_readingExcelFiles.pdf)
+* [Reading XML](./slides/01_07_readingXML.pdf)
+* [Reading JSON](./slides/01_08_readingJSON.pdf)
+* [The data.table](./slides/01_09_dataTable.pdf)

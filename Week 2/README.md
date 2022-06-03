@@ -1,27 +1,26 @@
 # `Week 2` [Getting and Cleaning Data]
 
-* Author: Anderson H Uyekita
-* Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
-* Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
-    * Instructor: Jeffrey Leek
-* Week 2
-    * Start: 2022/05/21
-    * Finish: 2022/05/21
+* &#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Author: Anderson H Uyekita
+* &#x1f4da; Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
+* &#x1f4d6; Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
+    * &#x1F9D1;&#x200d;&#x1F3EB; Instructor: Jeffrey Leek
+* &#x1F4C6; Week 2
+    * &#x1F6A6; 2022/05/21
+    * &#x1F3C1; 2022/05/21
 
 ***
 
 #### Assignments & Deliverables
     
-* :computer: Swirl: There is no swirl homework.
-* [:pencil: Quiz 2](./getting-and-cleaning-data_quiz-2.md)
+* &#x1F4BB; Swirl: There is no swirl homework.
+* [&#x1F4DD; Quiz 2](./getting-and-cleaning-data_quiz-2.md)
 
 ***
 
-This week the videos have covered:
+Content covered this week:
 
-Videos covered this week:
-* Reading from MySQL
-* Reading from HDF5
-* Reading from The Web
-* Reading From APIs
-* Reading From Other Sources
+* [Reading from MySQL](./slides/02_01_readingMySQL.pdf)
+* [Reading from HDF5](./slides/02_02_readingHDF5.pdf)
+* [Reading from The Web](./slides/02_03_readingFromTheWeb.pdf)
+* [Reading From APIs](./slides/02_04_readingFromAPIs.pdf)
+* [Reading From Other Sources](./slides/02_05_readingFromOtherSources.pdf)

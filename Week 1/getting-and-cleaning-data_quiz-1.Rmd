@@ -1,23 +1,29 @@
 ---
 title: '`Quiz 1` Getting and Cleaning Data'
-author: "Anderson H. Uyekita"
+author: '`r if(knitr::is_html_output()) {"&#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Anderson H Uyekita"} else {NULL}`'
 output:
-  github_document: default
   html_document:
     toc: true
     toc_depth: 4
     toc_float:
       collapsed: false
       smooth_scroll: true
+  github_document: default
 always_allow_html: true
 ---
 
-* Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
-* Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
-    * Instructor: Jeffrey Leek
-* Week 1: 
-    * Start: 2022/05/20
-    * Finish: 2022/05/20
+```{r,include=FALSE}
+# Package used to manage this Rmarkdown file.
+library(rmarkdown)
+```
+
+`r if(!knitr::is_html_output()) {"* &#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Author: Anderson H Uyekita"}`
+* &#x1f4da; Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
+* &#x1f4d6; Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
+    * &#x1F9D1;&#x200d;&#x1F3EB; Instructor: Jeffrey Leek
+* &#x1F4C6; Week 1
+    * &#x1F6A6; Start: 2022/05/20
+    * &#x1F3C1; Finish: 2022/05/20
 
 ***
 
@@ -27,6 +33,7 @@ library(tidyverse)
 library(magrittr)
 library(xml2)
 library(data.table)
+library(xlsx)
 ```
 
 This Quiz is part of the Getting and Cleaning Data Course.
@@ -131,8 +138,11 @@ dat <- xlsx::read.xlsx(file = "./data/natural_gas.xlsx",
                        colIndex = 7:15,
                        header = TRUE)
 
+# Loading Kable
+library(kableExtra)
+
 # Let's see how it is
-dat
+dat %>% kableExtra::kbl() %>% kableExtra::kable_styling()
 ```
 
 Calculating the expression: `sum(dat$Zip*dat$Ext,na.rm=T)`
@@ -191,24 +201,30 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 # Loading the housing_idaho.csv file.
 DT <- fread(file = "./data/housing_idaho.csv")
 
-
+# Calculating the time elapses
 a_1 <- Sys.time()
-a<- tapply(DT$pwgtp15,DT$SEX,mean)
+a <- tapply(DT$pwgtp15,DT$SEX,mean)
 b_1 <- Sys.time()
 
 a_2 <- Sys.time()
-a<-DT[,mean(pwgtp15),by=SEX]
+a < -DT[,mean(pwgtp15),by=SEX]
 b_2 <- Sys.time()
 
 a_3 <- Sys.time()
-a<-sapply(split(DT$pwgtp15,DT$SEX),mean)
+a <- sapply(split(DT$pwgtp15,DT$SEX),mean)
 b_3 <- Sys.time()
 
 a_4 <- Sys.time()
-a<-mean(DT[DT$SEX==1,]$pwgtp15); b<-mean(DT[DT$SEX==2,]$pwgtp15)
+a < -mean(DT[DT$SEX==1,]$pwgtp15); b <- mean(DT[DT$SEX==2,]$pwgtp15)
 b_4 <- Sys.time()
 
-
+# Printing the results.
 print(c(b_1 - a_1, b_2 - a_2, b_3 - a_3, b_4 - a_4))
-
 ```
+
+**NOTE:** The time differences will lead to a wrong answer. According to the "data.table video", the best solution would be that use DT due to:
+
+- Written in C, so it is much faster;
+- Much, much faster at subsetting, grouping, and updating.
+
+The `DT[, mean(pwgtp15),by=SEX]` in a single line group and calculate the average; meanwhile, the other alternatives use the DT package partially to subset, having another step to calculate the mean.
