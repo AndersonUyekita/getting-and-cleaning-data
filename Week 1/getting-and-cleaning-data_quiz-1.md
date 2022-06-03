@@ -14,7 +14,7 @@
     -   🚦 Start: 2022/05/20
     -   🏁 Finish: 2022/05/20
 -   🌎 Rpubs: [Interactive
-    Document](https://rpubs.com/AndersonUyekita/getting-and-cleaning-data_quiz-1)
+    Document](https://rpubs.com/AndersonUyekita/quiz-1_getting-and-cleaning-data)
 
 ------------------------------------------------------------------------
 

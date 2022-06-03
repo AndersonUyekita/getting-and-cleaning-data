@@ -2,13 +2,13 @@
 title: '`Quiz 1` Getting and Cleaning Data'
 author: '`r if(knitr::is_html_output()) {"&#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Anderson H Uyekita"} else {NULL}`'
 output:
-  github_document: default
   html_document:
     toc: true
     toc_depth: 4
     toc_float:
       collapsed: false
       smooth_scroll: true
+  github_document: default
 always_allow_html: true
 ---
 
@@ -30,7 +30,7 @@ library(kableExtra)
 * &#x1F4C6; Week 1
     * &#x1F6A6; Start: 2022/05/20
     * &#x1F3C1; Finish: 2022/05/20
-* `r if(!knitr::is_html_output()) {"&#x1F30E; Rpubs: [Interactive Document](https://rpubs.com/AndersonUyekita/getting-and-cleaning-data_quiz-1)"}else{"&#x1F4E6; Github Repository: [Static Document](https://github.com/AndersonUyekita/getting-and-cleaning-data/blob/main/Week%201/getting-and-cleaning-data_quiz-1.md){target='_blank' rel='noopener'}"}`
+* `r if(!knitr::is_html_output()) {"&#x1F30E; Rpubs: [Interactive Document](https://rpubs.com/AndersonUyekita/quiz-1_getting-and-cleaning-data)"}else{"&#x1F4E6; Github Repository: [Static Document](https://github.com/AndersonUyekita/getting-and-cleaning-data/blob/main/Week%201/getting-and-cleaning-data_quiz-1.md){target='_blank' rel='noopener'}"}`
 
 ***
 
