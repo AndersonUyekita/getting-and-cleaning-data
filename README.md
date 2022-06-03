@@ -1,6 +1,6 @@
 # [Getting and Cleaning Data]
 
-* 👨🏻‍💻 Author: Anderson H Uyekita
+* &#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Author: Anderson H Uyekita
 * :books: Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
 * :open_book: Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
     * :teacher: Instructor: Jeffrey Leek
@@ -42,3 +42,14 @@
 * Making data tidy
 * Distributing data
 * Scripting for data cleaning
+
+👋&#127998;
+
+&#8986;
+
+<!--
+&#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; = 
+
+
+
+-->
