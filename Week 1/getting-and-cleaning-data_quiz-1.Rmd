@@ -12,9 +12,15 @@ output:
 always_allow_html: true
 ---
 
-```{r,include=FALSE}
-# Package used to manage this Rmarkdown file.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,cache=TRUE,message=FALSE,warning=FALSE)
+library(tidyverse)
+library(magrittr)
+library(xml2)
+library(data.table)
+library(xlsx)
 library(rmarkdown)
+library(kableExtra)
 ```
 
 `r if(!knitr::is_html_output()) {"* &#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Author: Anderson H Uyekita"}`
@@ -24,17 +30,9 @@ library(rmarkdown)
 * &#x1F4C6; Week 1
     * &#x1F6A6; Start: 2022/05/20
     * &#x1F3C1; Finish: 2022/05/20
+* `r if(!knitr::is_html_output()) {"&#x1F30E; Rpubs: [Interactive Document](https://rpubs.com/AndersonUyekita/getting-and-cleaning-data_quiz-1)"}else{":octocat: Github Repository: [Static Document](https://github.com/AndersonUyekita/getting-and-cleaning-data/blob/main/Week%201/getting-and-cleaning-data_quiz-1.md)"}`
 
 ***
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,cache=TRUE,message=FALSE,warning=FALSE)
-library(tidyverse)
-library(magrittr)
-library(xml2)
-library(data.table)
-library(xlsx)
-```
 
 This Quiz is part of the Getting and Cleaning Data Course.
 
@@ -101,7 +99,7 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 data_1 <- utils::read.csv(file = "./data/survey_data_housing.csv")
 
 # Subsetting and filtering to find properties above 1 million USD.
-data_1 %>% dplyr::select(VAL) %>% filter(VAL == 24) %>% nrow()
+data_1 %>% dplyr::select(VAL) %>% dplyr::filter(VAL == 24) %>% base::nrow()
 ```
 
 ## Question 2
@@ -138,18 +136,26 @@ dat <- xlsx::read.xlsx(file = "./data/natural_gas.xlsx",
                        colIndex = 7:15,
                        header = TRUE)
 
-# Loading Kable
-library(kableExtra)
-
 # Let's see how it is
-dat %>% kableExtra::kbl() %>% kableExtra::kable_styling()
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        dat %>% kableExtra::kbl() %>% kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(dat)
+    }
 ```
 
 Calculating the expression: `sum(dat$Zip*dat$Ext,na.rm=T)`
 
 ```{r}
 # Printing the results.
-sum(dat$Zip*dat$Ext,na.rm=T)
+base::sum(dat$Zip*dat$Ext, na.rm=T)
 ```
 
 ## Question 4
@@ -167,19 +173,34 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
                      quiet = TRUE)
 
 # Parsing the XML file.
-xml_baltimore_restaurant <- as_list(read_xml(x = "./data/baltimore_restaurant.xml"))
+xml_baltimore_restaurant <- xml2::as_list(x = xml2::read_xml(x = "./data/baltimore_restaurant.xml"))
 
 # Converting XML file into data frame.
-df_baltimore_restaurant <- tibble::as_tibble(xml_baltimore_restaurant) %>%
-    unnest_longer(response) %>% unnest_wider(response) %>%
-    unnest(cols = names(.)) %>%
-    unnest(cols = names(.)) %>%
+df_baltimore_restaurant <- tibble::as_tibble(x = xml_baltimore_restaurant) %>%
+    tidyr::unnest_longer(col = response) %>%
+    tidyr::unnest_wider(col = response) %>%
+    tidyr::unnest(cols = names(.)) %>%
+    tidyr::unnest(cols = names(.)) %>%
     readr::type_convert()
 ```
 
-```{r,include=FALSE}
-# Printing the first rows.
-DT::datatable(df_baltimore_restaurant)
+```{r}
+# Let's see how it is
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        df_baltimore_restaurant %>%
+            head(10) %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(df_baltimore_restaurant)
+    }
 ```
 
 Answer:
@@ -207,7 +228,7 @@ a <- tapply(DT$pwgtp15,DT$SEX,mean)
 b_1 <- Sys.time()
 
 a_2 <- Sys.time()
-a < -DT[,mean(pwgtp15),by=SEX]
+a <- DT[,mean(pwgtp15),by=SEX]
 b_2 <- Sys.time()
 
 a_3 <- Sys.time()
@@ -215,7 +236,7 @@ a <- sapply(split(DT$pwgtp15,DT$SEX),mean)
 b_3 <- Sys.time()
 
 a_4 <- Sys.time()
-a < -mean(DT[DT$SEX==1,]$pwgtp15); b <- mean(DT[DT$SEX==2,]$pwgtp15)
+a <- mean(DT[DT$SEX==1,]$pwgtp15); b <- mean(DT[DT$SEX==2,]$pwgtp15)
 b_4 <- Sys.time()
 
 # Printing the results.

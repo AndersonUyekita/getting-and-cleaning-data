@@ -10,6 +10,8 @@
 -   📆 Week 1
     -   🚦 Start: 2022/05/20
     -   🏁 Finish: 2022/05/20
+-   🌎 Rpubs: [Interactive
+    Document](https://rpubs.com/AndersonUyekita/getting-and-cleaning-data_quiz-1)
 
 ------------------------------------------------------------------------
 
@@ -79,7 +81,7 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
 data_1 <- utils::read.csv(file = "./data/survey_data_housing.csv")
 
 # Subsetting and filtering to find properties above 1 million USD.
-data_1 %>% dplyr::select(VAL) %>% filter(VAL == 24) %>% nrow()
+data_1 %>% dplyr::select(VAL) %>% dplyr::filter(VAL == 24) %>% base::nrow()
 ```
 
     ## [1] 53
@@ -118,11 +120,19 @@ dat <- xlsx::read.xlsx(file = "./data/natural_gas.xlsx",
                        colIndex = 7:15,
                        header = TRUE)
 
-# Loading Kable
-library(kableExtra)
-
 # Let's see how it is
-dat %>% kableExtra::kbl() %>% kableExtra::kable_styling()
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        dat %>% kableExtra::kbl() %>% kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(dat)
+    }
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -310,7 +320,7 @@ Calculating the expression: `sum(dat$Zip*dat$Ext,na.rm=T)`
 
 ``` r
 # Printing the results.
-sum(dat$Zip*dat$Ext,na.rm=T)
+base::sum(dat$Zip*dat$Ext, na.rm=T)
 ```
 
     ## [1] 36534720
@@ -330,15 +340,295 @@ utils::download.file(url = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata
                      quiet = TRUE)
 
 # Parsing the XML file.
-xml_baltimore_restaurant <- as_list(read_xml(x = "./data/baltimore_restaurant.xml"))
+xml_baltimore_restaurant <- xml2::as_list(x = xml2::read_xml(x = "./data/baltimore_restaurant.xml"))
 
 # Converting XML file into data frame.
-df_baltimore_restaurant <- tibble::as_tibble(xml_baltimore_restaurant) %>%
-    unnest_longer(response) %>% unnest_wider(response) %>%
-    unnest(cols = names(.)) %>%
-    unnest(cols = names(.)) %>%
+df_baltimore_restaurant <- tibble::as_tibble(x = xml_baltimore_restaurant) %>%
+    tidyr::unnest_longer(col = response) %>%
+    tidyr::unnest_wider(col = response) %>%
+    tidyr::unnest(cols = names(.)) %>%
+    tidyr::unnest(cols = names(.)) %>%
     readr::type_convert()
 ```
+
+``` r
+# Let's see how it is
+    # CASE: github_document
+    if(!knitr::is_html_output()) {
+    
+        # Static table using Kable Package.
+        df_baltimore_restaurant %>%
+            head(10) %>%
+            kableExtra::kbl() %>%
+            kableExtra::kable_styling()
+    
+    # CASE: hmtl_document
+    } else {
+    
+        # Interactive table using DT package.
+        DT::datatable(df_baltimore_restaurant)
+    }
+```
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+zipcode
+</th>
+<th style="text-align:left;">
+neighborhood
+</th>
+<th style="text-align:right;">
+councildistrict
+</th>
+<th style="text-align:left;">
+policedistrict
+</th>
+<th style="text-align:left;">
+location_1
+</th>
+<th style="text-align:left;">
+response_id
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+410
+</td>
+<td style="text-align:right;">
+21206
+</td>
+<td style="text-align:left;">
+Frankford
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+NORTHEASTERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1919
+</td>
+<td style="text-align:right;">
+21231
+</td>
+<td style="text-align:left;">
+Fells Point
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SOUTHEASTERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SAUTE
+</td>
+<td style="text-align:right;">
+21224
+</td>
+<td style="text-align:left;">
+Canton
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SOUTHEASTERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+\#1 CHINESE KITCHEN
+</td>
+<td style="text-align:right;">
+21211
+</td>
+<td style="text-align:left;">
+Hampden
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+NORTHERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+\#1 chinese restaurant
+</td>
+<td style="text-align:right;">
+21223
+</td>
+<td style="text-align:left;">
+Millhill
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+SOUTHWESTERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+19TH HOLE
+</td>
+<td style="text-align:right;">
+21218
+</td>
+<td style="text-align:left;">
+Clifton Park
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+NORTHEASTERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3 KINGS
+</td>
+<td style="text-align:right;">
+21205
+</td>
+<td style="text-align:left;">
+McElderry Park
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+SOUTHEASTERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3 MILES HOUSE, INC.
+</td>
+<td style="text-align:right;">
+21211
+</td>
+<td style="text-align:left;">
+Remington
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+NORTHERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3 W’S TAVERN
+</td>
+<td style="text-align:right;">
+21205
+</td>
+<td style="text-align:left;">
+McElderry Park
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+SOUTHEASTERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+300 SOUTH ANN STREET
+</td>
+<td style="text-align:right;">
+21231
+</td>
+<td style="text-align:left;">
+Upper Fells Point
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SOUTHEASTERN
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+row
+</td>
+</tr>
+</tbody>
+</table>
 
 Answer:
 
@@ -367,14 +657,7 @@ a <- tapply(DT$pwgtp15,DT$SEX,mean)
 b_1 <- Sys.time()
 
 a_2 <- Sys.time()
-a < -DT[,mean(pwgtp15),by=SEX]
-```
-
-    ##        SEX    V1
-    ## [1,] FALSE FALSE
-    ## [2,] FALSE FALSE
-
-``` r
+a <- DT[,mean(pwgtp15),by=SEX]
 b_2 <- Sys.time()
 
 a_3 <- Sys.time()
@@ -382,13 +665,7 @@ a <- sapply(split(DT$pwgtp15,DT$SEX),mean)
 b_3 <- Sys.time()
 
 a_4 <- Sys.time()
-a < -mean(DT[DT$SEX==1,]$pwgtp15); b <- mean(DT[DT$SEX==2,]$pwgtp15)
-```
-
-    ##     1     2 
-    ## FALSE FALSE
-
-``` r
+a <- mean(DT[DT$SEX==1,]$pwgtp15); b <- mean(DT[DT$SEX==2,]$pwgtp15)
 b_4 <- Sys.time()
 
 # Printing the results.
@@ -396,7 +673,7 @@ print(c(b_1 - a_1, b_2 - a_2, b_3 - a_3, b_4 - a_4))
 ```
 
     ## Time differences in secs
-    ## [1] 0.002102137 0.006941080 0.001256943 0.012876987
+    ## [1] 0.001893997 0.006535053 0.001427889 0.013365030
 
 **NOTE:** The time differences will lead to a wrong answer. According to
 the “data.table video”, the best solution would be that use DT due to:
