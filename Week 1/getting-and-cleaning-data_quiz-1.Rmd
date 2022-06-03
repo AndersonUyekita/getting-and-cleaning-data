@@ -24,8 +24,8 @@ library(kableExtra)
 ```
 
 `r if(!knitr::is_html_output()) {"* &#x1f468;&#x1F3FB;&#x200d;&#x1f4bb; Author: Anderson H Uyekita"}`
-* &#x1f4da; Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
-* &#x1f4d6; Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning)
+* &#x1f4da; Specialization: [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r){target='_blank' rel='noopener'}
+* &#x1f4d6; Course: [Getting and Cleaning Data](https://www.coursera.org/learn/data-cleaning){target='_blank' rel='noopener'}
     * &#x1F9D1;&#x200d;&#x1F3EB; Instructor: Jeffrey Leek
 * &#x1F4C6; Week 1
     * &#x1F6A6; Start: 2022/05/20
@@ -243,7 +243,7 @@ b_4 <- Sys.time()
 print(c(b_1 - a_1, b_2 - a_2, b_3 - a_3, b_4 - a_4))
 ```
 
-**NOTE:** The time differences will lead to a wrong answer. According to the "data.table video", the best solution would be that use DT due to:
+**NOTE:** The time differences will lead to a wrong answer. According to the Slide 2 of [data.table PDF](https://github.com/AndersonUyekita/getting-and-cleaning-data/blob/main/Week%201/slides/01_09_dataTable.pdf){target='_blank' rel='noopener'}, the best solution would be that use DT due to:
 
 - Written in C, so it is much faster;
 - Much, much faster at subsetting, grouping, and updating.

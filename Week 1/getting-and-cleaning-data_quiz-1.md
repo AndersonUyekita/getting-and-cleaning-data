@@ -2,10 +2,13 @@
 ================
 
 -   👨🏻‍💻 Author: Anderson H Uyekita
--   📚 Specialization: [Data Science: Foundations using R
-    Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
--   📖 Course: [Getting and Cleaning
-    Data](https://www.coursera.org/learn/data-cleaning)
+-   📚 Specialization: <a
+    href="https://www.coursera.org/specializations/data-science-foundations-r"
+    target="_blank" rel="noopener">Data Science: Foundations using R
+    Specialization</a>
+-   📖 Course:
+    <a href="https://www.coursera.org/learn/data-cleaning" target="_blank"
+    rel="noopener">Getting and Cleaning Data</a>
     -   🧑‍🏫 Instructor: Jeffrey Leek
 -   📆 Week 1
     -   🚦 Start: 2022/05/20
@@ -676,7 +679,10 @@ print(c(b_1 - a_1, b_2 - a_2, b_3 - a_3, b_4 - a_4))
     ## [1] 0.001893997 0.006535053 0.001427889 0.013365030
 
 **NOTE:** The time differences will lead to a wrong answer. According to
-the “data.table video”, the best solution would be that use DT due to:
+the Slide 2 of <a
+href="https://github.com/AndersonUyekita/getting-and-cleaning-data/blob/main/Week%201/slides/01_09_dataTable.pdf"
+target="_blank" rel="noopener">data.table PDF</a>, the best solution
+would be that use DT due to:
 
 -   Written in C, so it is much faster;
 -   Much, much faster at subsetting, grouping, and updating.
