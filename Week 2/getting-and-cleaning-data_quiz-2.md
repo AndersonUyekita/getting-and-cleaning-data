@@ -49,8 +49,8 @@ oauth_endpoints("github")
 #
 # Go to https://github.com/settings/developers and create a "New OAuth App".
 myapp <- oauth_app("github",
-                   key = "a4828bb1e49fd57761a3",
-                   secret = "e3903d74395b7762d0e3d8201354a2b6021a21ba")
+                   key = Sys.getenv("key"),        # key defined in .Renviron
+                   secret = Sys.getenv("secret"))  # secret defined in .Renviron
 
 # 3. Get OAuth credentials
 github_token <- oauth2.0_token(endpoint = httr::oauth_endpoints("github"),
